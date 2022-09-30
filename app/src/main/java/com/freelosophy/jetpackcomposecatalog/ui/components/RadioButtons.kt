@@ -43,11 +43,12 @@ import androidx.compose.ui.graphics.Color
 //}
 
 @Composable
-fun MyRadioButtonList(name: String, onItemSelected:(String) -> Unit){
+fun MyRadioButtonList(name: String, modifier: Modifier, onItemSelected:(String) -> Unit){
     Column(Modifier.fillMaxWidth()) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
+            horizontalArrangement = Arrangement.Center,
+            modifier = modifier
         ){
             RadioButton(
                 selected = name == "Santi", onClick = { onItemSelected("Santi") },
@@ -56,7 +57,8 @@ fun MyRadioButtonList(name: String, onItemSelected:(String) -> Unit){
         }
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
+            horizontalArrangement = Arrangement.Center,
+            modifier = modifier
         ){
             RadioButton(
                 selected = name == "Goku", onClick = {  onItemSelected("Goku") },
@@ -65,7 +67,8 @@ fun MyRadioButtonList(name: String, onItemSelected:(String) -> Unit){
         }
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
+            horizontalArrangement = Arrangement.Center,
+            modifier = modifier
         ){
             RadioButton(
                 selected = name == "Picachu", onClick = {  onItemSelected("Picachu") },
@@ -74,7 +77,8 @@ fun MyRadioButtonList(name: String, onItemSelected:(String) -> Unit){
         }
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
+            horizontalArrangement = Arrangement.Center,
+            modifier = modifier
         ){
             RadioButton(
                 selected = name == "Goliat", onClick = {  onItemSelected("Goliat") },

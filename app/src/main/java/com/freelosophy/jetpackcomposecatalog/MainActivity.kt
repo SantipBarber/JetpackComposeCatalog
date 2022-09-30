@@ -15,7 +15,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.freelosophy.jetpackcomposecatalog.ui.components.MyCustomDialog
+import com.freelosophy.jetpackcomposecatalog.ui.components.MyConfirmationDialog
 import com.freelosophy.jetpackcomposecatalog.ui.theme.JetpackComposeCatalogTheme
 
 class MainActivity : ComponentActivity() {
@@ -38,7 +38,7 @@ class MainActivity : ComponentActivity() {
                         ){
                             Text("Mostrar diálogo")
                         }
-                        MyCustomDialog(
+                        MyConfirmationDialog(
                             show = show,
                             onDismiss = { show = false },
 //                            onConfirm = { Log.i("Alert", "click") }

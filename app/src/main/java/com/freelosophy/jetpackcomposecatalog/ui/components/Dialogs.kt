@@ -5,10 +5,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.AlertDialog
-import androidx.compose.material.Text
-import androidx.compose.material.TextButton
-import androidx.compose.runtime.Composable
+import androidx.compose.material.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -24,6 +22,56 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.freelosophy.jetpackcomposecatalog.ui.theme.JetpackComposeCatalogTheme
 
+@Composable
+fun MyConfirmationDialog(
+    show: Boolean,
+    onDismiss: () -> Unit,
+//    onConfirm: () -> Unit
+) {
+    var status by remember { mutableStateOf("") }
+    if (show) {
+        Dialog(
+            onDismissRequest = { onDismiss() }
+        ) {
+            Card(shape = MaterialTheme.shapes.small) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(color = Color.White)
+                ) {
+
+                    MyTitleDialog(
+                        title = "Phone Ringtone",
+                        modifier = Modifier
+                            .padding(24.dp)
+                    )
+                    Divider(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        color = Color.LightGray
+                    )
+                    MyRadioButtonList(
+                        name = status, modifier = Modifier
+                            .padding(6.dp)
+                    ) { status = it }
+                    Divider(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        color = Color.LightGray
+                    )
+                    Row(
+                        modifier = Modifier
+                            .align(Alignment.End)
+                            .padding(8.dp)
+                    ) {
+                        TextButton(onClick = { }) { Text(text = "CANCEL") }
+                        TextButton(onClick = { }) { Text(text = "OK") }
+                    }
+                }
+            }
+        }
+    }
+}
 
 /**
  * Para el MyAlertDialog
@@ -122,7 +170,7 @@ fun MySimpleCustomDialog(
 fun MyCustomDialog(
     show: Boolean,
     onDismiss: () -> Unit
-){
+) {
     if (show) {
         Dialog(
             onDismissRequest = { onDismiss() },
@@ -133,10 +181,22 @@ fun MyCustomDialog(
                     .padding(24.dp)
                     .fillMaxWidth()
             ) {
-                MyTitleDialog("Set backup account")
-                AccountItem(email = "ejemplo1@gmail.com", drawable = com.freelosophy.jetpackcomposecatalog.R.drawable.avatar)
-                AccountItem(email = "ejemplo2@gmail.com", drawable = com.freelosophy.jetpackcomposecatalog.R.drawable.avatar)
-                AccountItem(email = "Añadir una nueva cuenta", drawable = com.freelosophy.jetpackcomposecatalog.R.drawable.add)
+                MyTitleDialog(
+                    "Set backup account", Modifier
+                        .padding(12.dp)
+                )
+                AccountItem(
+                    email = "ejemplo1@gmail.com",
+                    drawable = com.freelosophy.jetpackcomposecatalog.R.drawable.avatar
+                )
+                AccountItem(
+                    email = "ejemplo2@gmail.com",
+                    drawable = com.freelosophy.jetpackcomposecatalog.R.drawable.avatar
+                )
+                AccountItem(
+                    email = "Añadir una nueva cuenta",
+                    drawable = com.freelosophy.jetpackcomposecatalog.R.drawable.add
+                )
             }
         }
     }
@@ -166,13 +226,12 @@ fun AccountItem(email: String, @DrawableRes drawable: Int) {
 }
 
 @Composable
-fun MyTitleDialog(title: String) {
+fun MyTitleDialog(title: String, modifier: Modifier) {
     Text(
         text = title,
         fontSize = 20.sp,
         fontWeight = FontWeight.SemiBold,
-        modifier = Modifier
-            .padding(12.dp)
+        modifier = modifier
     )
 }
 
