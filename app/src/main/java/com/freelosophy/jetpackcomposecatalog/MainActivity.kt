@@ -16,34 +16,58 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.freelosophy.jetpackcomposecatalog.ui.components.MyConfirmationDialog
+import com.freelosophy.jetpackcomposecatalog.ui.components.SimpleRecyclerView
+import com.freelosophy.jetpackcomposecatalog.ui.components.SuperHeroGridView
+import com.freelosophy.jetpackcomposecatalog.ui.components.SuperHeroView
 import com.freelosophy.jetpackcomposecatalog.ui.theme.JetpackComposeCatalogTheme
 
+
+//class MainActivity : ComponentActivity() {
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        setContent {
+//            JetpackComposeCatalogTheme {
+//                // A surface container using the 'background' color from the theme
+//                Surface(
+////                    modifier = Modifier.fillMaxSize(),
+//                    color = MaterialTheme.colors.background
+//                ) {
+//                    var show by remember { mutableStateOf(false) }
+//                    Box(
+//                        modifier = Modifier.fillMaxSize(),
+//                        contentAlignment = Alignment.Center
+//                    ) {
+//                        Button(
+//                            onClick = { show = true}
+//                        ){
+//                            Text("Mostrar diálogo")
+//                        }
+//                        MyConfirmationDialog(
+//                            show = show,
+//                            onDismiss = { show = false },
+////                            onConfirm = { Log.i("Alert", "click") }
+//                        )
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}
+
+/**
+ * Válido a partir de LazyColumn o RecyclerView en JetpackCompose
+ */
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             JetpackComposeCatalogTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
-//                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    var show by remember { mutableStateOf(false) }
-                    Box(
-                        modifier = Modifier.fillMaxSize(),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Button(
-                            onClick = { show = true}
-                        ){
-                            Text("Mostrar diálogo")
-                        }
-                        MyConfirmationDialog(
-                            show = show,
-                            onDismiss = { show = false },
-//                            onConfirm = { Log.i("Alert", "click") }
-                        )
-                    }
+//                        SimpleRecyclerView()
+                    SuperHeroGridView()
                 }
             }
         }

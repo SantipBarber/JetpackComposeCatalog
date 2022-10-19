@@ -7,7 +7,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Devices
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.freelosophy.jetpackcomposecatalog.ui.theme.JetpackComposeCatalogTheme
 
 
 @Composable
@@ -83,5 +86,20 @@ fun MyBox() {
                 .height(50.dp)
                 .background(Color.Cyan)
         )
+    }
+}
+
+
+@Preview(
+    showBackground = true,
+    showSystemUi = true,
+    device = Devices.PIXEL_XL
+)
+@Composable
+fun MyLayoutPreview() {
+    JetpackComposeCatalogTheme {
+        Column {
+            MyRow()
+        }
     }
 }
