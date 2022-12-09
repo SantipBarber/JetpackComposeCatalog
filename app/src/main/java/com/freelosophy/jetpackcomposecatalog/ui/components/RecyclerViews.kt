@@ -1,10 +1,11 @@
+@file:OptIn(ExperimentalFoundationApi::class)
+
 package com.freelosophy.jetpackcomposecatalog.ui.components
 
+import android.os.Build
 import android.widget.Toast
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
+import androidx.annotation.RequiresApi
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
 import androidx.compose.material.Card
@@ -28,10 +29,10 @@ fun SimpleRecyclerView() {
     val myList = listOf("Aris", "Santi", "Pepe", "Manolo")
     LazyColumn() {
         item { Text("primer item") }
-        items(7){
-            Text(text="Este es el item $it")
+        items(7) {
+            Text(text = "Este es el item $it")
         }
-        items(myList){ name ->
+        items(myList) { name ->
             Text("Hola me llamo $name")
         }
     }
@@ -43,9 +44,48 @@ fun SuperHeroView() {
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(getSuperHeroes()){ superhero ->
-            ItemHero(itemHero = superhero) { Toast.makeText(context, it.superheroName, Toast.LENGTH_SHORT).show() }
+        items(getSuperHeroes()) { superhero ->
+            ItemHero(itemHero = superhero) {
+                Toast.makeText(
+                    context,
+                    it.superheroName,
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
+    }
+}
+
+@RequiresApi(Build.VERSION_CODES.N)
+@Composable
+fun SuperHeroStickyView() {
+    val context = LocalContext.current
+    val heroList: Map<String, List<SuperHero>> = getSuperHeroes().groupBy { it.publisher }
+    LazyColumn(
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        heroList.forEach { (publisher, mySuperHero) ->
+            stickyHeader {
+                Text(
+                    text = publisher,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color.Green),
+                    fontSize = 16.sp,
+                    color = Color.White
+                )
+            }
+            items(mySuperHero) { superhero ->
+                ItemHero(itemHero = superhero) {
+                    Toast.makeText(
+                        context,
+                        it.superheroName,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+
     }
 }
 
@@ -58,11 +98,17 @@ fun SuperHeroGridView() {
     LazyVerticalGrid(
         cells = GridCells.Adaptive(200.dp),
         content = {
-        items(getSuperHeroes()){ superhero ->
-            ItemHero(itemHero = superhero) { Toast.makeText(context, it.superheroName, Toast.LENGTH_SHORT).show() }
-        }
-    },
-    contentPadding = PaddingValues(horizontal =  16.dp, vertical = 8.dp)
+            items(getSuperHeroes()) { superhero ->
+                ItemHero(itemHero = superhero) {
+                    Toast.makeText(
+                        context,
+                        it.superheroName,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        },
+        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
     )
 
 }
@@ -72,7 +118,7 @@ fun ItemHero(itemHero: SuperHero, onItemSelected: (SuperHero) -> Unit) {
     Card(
         border = BorderStroke(2.dp, Color.Red),
         modifier = Modifier
-            .width(200.dp)
+            .fillMaxWidth()
             .clickable { onItemSelected(itemHero) }
             .padding(horizontal = 4.dp, vertical = 4.dp)
     ) {
@@ -83,11 +129,20 @@ fun ItemHero(itemHero: SuperHero, onItemSelected: (SuperHero) -> Unit) {
                 modifier = Modifier.fillMaxWidth(),
                 contentScale = ContentScale.Crop
             )
-            Text(text = itemHero.superheroName, modifier = Modifier.align(Alignment.CenterHorizontally))
-            Text(text = itemHero.realName, modifier = Modifier.align(Alignment.CenterHorizontally), fontSize = 12.sp)
-            Text(text = itemHero.publisher, modifier = Modifier
-                .align(Alignment.End)
-                .padding(4.dp), fontSize = 10.sp)
+            Text(
+                text = itemHero.superheroName,
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            )
+            Text(
+                text = itemHero.realName,
+                modifier = Modifier.align(Alignment.CenterHorizontally),
+                fontSize = 12.sp
+            )
+            Text(
+                text = itemHero.publisher, modifier = Modifier
+                    .align(Alignment.End)
+                    .padding(4.dp), fontSize = 10.sp
+            )
 
         }
     }
@@ -95,13 +150,48 @@ fun ItemHero(itemHero: SuperHero, onItemSelected: (SuperHero) -> Unit) {
 
 fun getSuperHeroes(): List<SuperHero> {
     return listOf(
-        SuperHero(superheroName = "Spiderman", realName = "Petter Parker", publisher = "Marvel", R.drawable.spiderman),
-        SuperHero(superheroName = "Wolverine", realName = "James Howlett", publisher = "Marvel", R.drawable.logan),
-        SuperHero(superheroName = "Batman", realName = "Bruce Wayne", publisher = "DC", R.drawable.batman),
-        SuperHero(superheroName = "Thor", realName = "Thor Odinson", publisher = "Marvel", R.drawable.thor),
-        SuperHero(superheroName = "Flash", realName = "Barry Allen", publisher = "DC", R.drawable.flash),
-        SuperHero(superheroName = "Green Lantern", realName = "Jay Garrick", publisher = "DC", R.drawable.green_lantern),
-        SuperHero(superheroName = "Wonder Woman", realName = "Princess Diana", publisher = "DC", R.drawable.wonder_woman)
+        SuperHero(
+            superheroName = "Spiderman",
+            realName = "Petter Parker",
+            publisher = "Marvel",
+            R.drawable.spiderman
+        ),
+        SuperHero(
+            superheroName = "Wolverine",
+            realName = "James Howlett",
+            publisher = "Marvel",
+            R.drawable.logan
+        ),
+        SuperHero(
+            superheroName = "Batman",
+            realName = "Bruce Wayne",
+            publisher = "DC",
+            R.drawable.batman
+        ),
+        SuperHero(
+            superheroName = "Thor",
+            realName = "Thor Odinson",
+            publisher = "Marvel",
+            R.drawable.thor
+        ),
+        SuperHero(
+            superheroName = "Flash",
+            realName = "Barry Allen",
+            publisher = "DC",
+            R.drawable.flash
+        ),
+        SuperHero(
+            superheroName = "Green Lantern",
+            realName = "Jay Garrick",
+            publisher = "DC",
+            R.drawable.green_lantern
+        ),
+        SuperHero(
+            superheroName = "Wonder Woman",
+            realName = "Princess Diana",
+            publisher = "DC",
+            R.drawable.wonder_woman
+        )
     )
 }
 
@@ -109,8 +199,11 @@ fun getSuperHeroes(): List<SuperHero> {
 @Preview(
     showBackground = true,
     showSystemUi = true,
-    device = Devices.PIXEL_4_XL)
+    device = Devices.PIXEL_4_XL
+)
 @Composable
 fun MyRecyclerView() {
-    SuperHeroView()
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        SuperHeroStickyView()
+    }
 }
