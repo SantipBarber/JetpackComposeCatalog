@@ -43,7 +43,7 @@ fun MyRangeSlider() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         RangeSlider(
-            values = currentRange,
+            value = currentRange,
             onValueChange = { currentRange = it },
             valueRange = 0f..100f,
             steps = 9

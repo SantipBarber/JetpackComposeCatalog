@@ -1,4 +1,4 @@
-package com.freelosophy.jetpackcomposecatalog.model
+package com.freelosophy.jetpackcomposecatalog.ui.model
 
 import androidx.annotation.DrawableRes
 

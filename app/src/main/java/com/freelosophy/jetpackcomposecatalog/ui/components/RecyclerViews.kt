@@ -4,10 +4,12 @@ package com.freelosophy.jetpackcomposecatalog.ui.components
 
 import android.os.Build
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -22,7 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.freelosophy.jetpackcomposecatalog.R
-import com.freelosophy.jetpackcomposecatalog.model.SuperHero
+import com.freelosophy.jetpackcomposecatalog.ui.model.SuperHero
 
 @Composable
 fun SimpleRecyclerView() {
@@ -56,7 +58,6 @@ fun SuperHeroView() {
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun SuperHeroStickyView() {
     val context = LocalContext.current
@@ -89,14 +90,12 @@ fun SuperHeroStickyView() {
     }
 }
 
-
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun SuperHeroGridView() {
     //  GridCells.Fixed(2)
     val context = LocalContext.current
     LazyVerticalGrid(
-        cells = GridCells.Adaptive(200.dp),
+        columns = GridCells.Adaptive(200.dp),
         content = {
             items(getSuperHeroes()) { superhero ->
                 ItemHero(itemHero = superhero) {

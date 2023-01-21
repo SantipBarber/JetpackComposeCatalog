@@ -10,7 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
-import com.freelosophy.jetpackcomposecatalog.model.Routes
+import com.freelosophy.jetpackcomposecatalog.ui.model.Routes
 
 @Composable
 fun Screen1(navigationController: NavHostController) {

@@ -3,6 +3,7 @@ package com.freelosophy.jetpackcomposecatalog
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -12,9 +13,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.freelosophy.jetpackcomposecatalog.model.Routes
+import com.freelosophy.jetpackcomposecatalog.ui.model.Routes
 import com.freelosophy.jetpackcomposecatalog.ui.navigation.*
+import com.freelosophy.jetpackcomposecatalog.ui.screens.LoginScreen
 import com.freelosophy.jetpackcomposecatalog.ui.theme.JetpackComposeCatalogTheme
+import com.freelosophy.jetpackcomposecatalog.ui.viewmodels.LoginViewModel
 
 
 //class MainActivity : ComponentActivity() {
@@ -53,6 +56,7 @@ import com.freelosophy.jetpackcomposecatalog.ui.theme.JetpackComposeCatalogTheme
  * Válido a partir de LazyColumn o RecyclerView en JetpackCompose
  */
 class MainActivity : ComponentActivity() {
+    private val loginViewModel: LoginViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -66,7 +70,7 @@ class MainActivity : ComponentActivity() {
                         navController = navigationController,
                         startDestination = Routes.Screen1.route
                     ) {
-                        composable(Routes.Screen1.route) { Screen1(navigationController) }
+                        composable(Routes.Screen1.route) { LoginScreen(loginViewModel) }
                         composable(Routes.Screen2.route) { Screen2(navigationController) }
                         composable(Routes.Screen3.route) { Screen3(navigationController) }
                         composable(

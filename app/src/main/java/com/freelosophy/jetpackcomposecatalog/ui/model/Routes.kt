@@ -1,4 +1,4 @@
-package com.freelosophy.jetpackcomposecatalog.model
+package com.freelosophy.jetpackcomposecatalog.ui.model
 
 sealed class Routes(val route: String) {
     object Screen1: Routes("screen1")
