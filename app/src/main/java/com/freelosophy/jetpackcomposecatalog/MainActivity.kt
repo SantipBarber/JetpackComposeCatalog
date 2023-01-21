@@ -14,7 +14,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.freelosophy.jetpackcomposecatalog.ui.model.Routes
-import com.freelosophy.jetpackcomposecatalog.ui.navigation.*
+import com.freelosophy.jetpackcomposecatalog.ui.navigation.Screen2
+import com.freelosophy.jetpackcomposecatalog.ui.navigation.Screen3
+import com.freelosophy.jetpackcomposecatalog.ui.navigation.Screen4
+import com.freelosophy.jetpackcomposecatalog.ui.navigation.Screen5
 import com.freelosophy.jetpackcomposecatalog.ui.screens.LoginScreen
 import com.freelosophy.jetpackcomposecatalog.ui.theme.JetpackComposeCatalogTheme
 import com.freelosophy.jetpackcomposecatalog.ui.viewmodels.LoginViewModel
