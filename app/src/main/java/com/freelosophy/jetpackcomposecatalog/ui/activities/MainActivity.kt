@@ -1,4 +1,4 @@
-package com.freelosophy.jetpackcomposecatalog
+package com.freelosophy.jetpackcomposecatalog.ui.activities
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -21,6 +21,8 @@ import com.freelosophy.jetpackcomposecatalog.ui.navigation.Screen5
 import com.freelosophy.jetpackcomposecatalog.ui.screens.LoginScreen
 import com.freelosophy.jetpackcomposecatalog.ui.theme.JetpackComposeCatalogTheme
 import com.freelosophy.jetpackcomposecatalog.ui.viewmodels.LoginViewModel
+import dagger.hilt.InstallIn
+import dagger.hilt.android.AndroidEntryPoint
 
 
 //class MainActivity : ComponentActivity() {
@@ -58,6 +60,7 @@ import com.freelosophy.jetpackcomposecatalog.ui.viewmodels.LoginViewModel
 /**
  * Válido a partir de LazyColumn o RecyclerView en JetpackCompose
  */
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val loginViewModel: LoginViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
