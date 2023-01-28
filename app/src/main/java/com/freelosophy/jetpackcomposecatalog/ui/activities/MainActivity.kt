@@ -13,6 +13,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.freelosophy.jetpackcomposecatalog.ui.animations.ColorAnimationAdvanced
+import com.freelosophy.jetpackcomposecatalog.ui.animations.ColorAnimationSimple
+import com.freelosophy.jetpackcomposecatalog.ui.animations.SizeAnimation
 import com.freelosophy.jetpackcomposecatalog.ui.model.Routes
 import com.freelosophy.jetpackcomposecatalog.ui.navigation.Screen2
 import com.freelosophy.jetpackcomposecatalog.ui.navigation.Screen3
@@ -76,7 +79,9 @@ class MainActivity : ComponentActivity() {
                         navController = navigationController,
                         startDestination = Routes.Screen1.route
                     ) {
-                        composable(Routes.Screen1.route) { LoginScreen(loginViewModel) }
+                        // Se añade aquí para poder verlo en acción ;)
+                        composable(Routes.Screen1.route) { SizeAnimation() }
+                        //composable(Routes.Screen1.route) { LoginScreen(loginViewModel) }
                         composable(Routes.Screen2.route) { Screen2(navigationController) }
                         composable(Routes.Screen3.route) { Screen3(navigationController) }
                         composable(
